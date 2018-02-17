@@ -35,7 +35,7 @@ if (x < array1_size):
     y = array2[array1[x] * 256];
       \end{lstlisting}
     
-    This can be exploited as the CPU can speculatively execute this branch even though x may be larger than then size of array1. Spectre can then use by indexing past the end of array1 and then leaking the information. \\
+    This can be exploited as the CPU can speculatively execute this branch even though x may be larger than the size of array1. Spectre can then use this by indexing past the end of array1 and leak information. \\
 
     \part
       Disable indirect branch prediction in all processors.
