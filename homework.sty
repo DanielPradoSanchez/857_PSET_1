@@ -1,0 +1,119 @@
+%
+% LaTeX Homework Formatting Environment 
+% Austin J. Garrett
+% 
+% Based on source by Josh Davis
+% https://github.com/jdavis/latex-homework-template
+%
+
+\usepackage{macros}
+\usepackage{multicol}
+\usepackage{multirow}
+\DeclareGraphicsRule{.1}{mps}{*}{}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\ (\hmwkClassTime): \hmwkTitle}
+\rhead{\firstxmark}
+\cfoot{Page\ \thepage\ of\ \protect\pageref*{LastPage}}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Formatting
+%
+
+% General
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  filecolor=magenta,      
+  urlcolor=cyan,
+}
+
+\newcommand{\solution}{\textbf{\large Solution}}
+\renewcommand{\part}[1][] {
+  \ifthenelse{\equal{#1}{}} {
+    \large \textbf{Part \Alph{partCounter}} \\
+    \stepcounter{partCounter}
+  } { 
+    \large \textbf{Part #1} \\
+  }
+}
+
+% Column Widths
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+%
+% Title Page
+%
+
+\title{
+  \vspace{2in}
+  \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+  \normalsize\vspace{0.1in}\small{\hmwkCompletionDate}\\
+  \vspace{0.1in}\large{\textit{\hmwkClassRecitation\ - \hmwkClassTime}}
+  \vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}\\ \textit{Collaborators: \hmwkCollaborators}}
+\date{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential.
+%
+
+\newenvironment{homeworkProblem}[1][-1]{
+ \ifnum#1>0
+  \setcounter{homeworkProblemCounter}{#1}
+ \fi
+ \section{Problem \arabic{homeworkProblemCounter}}
+ \setcounter{partCounter}{1}
+ \enterProblemHeader{homeworkProblemCounter}
+}{
+ \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}

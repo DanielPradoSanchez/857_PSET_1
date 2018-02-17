@@ -1,0 +1,168 @@
+%
+% LaTeX Macros
+% Austin J. Garrett
+%
+
+% Packages
+\usepackage{advdate}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{amsfonts}
+\usepackage{amsmath,esint}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{array}
+\usepackage{circuitikz}
+\usepackage{dsfont}
+\usepackage{enumerate}
+\usepackage{extramarks}
+\usepackage{fancyhdr}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{lastpage}
+\usepackage{listings}
+\usepackage{macros}
+\usepackage{pgfplots}
+\usepackage{setspace}
+\usepackage{siunitx}
+\usepackage{stmaryrd}
+\usepackage{subcaption}
+\usepackage{tikz-qtree}
+\usepackage{underscore}
+\usepackage{tikz}
+\usepackage{units}
+\usepackage{wrapfig}
+\usepackage{xcolor,colortbl}
+\usepackage{xifthen}
+\usetikzlibrary{automata,shapes.geometric,trees,calc,arrows.meta,positioning,decorations.pathreplacing,bending}
+
+\sisetup{separate-uncertainty = true, per-mode = fraction}
+
+% Todo
+\newcommand{\todo}[1][] {
+  \color{blue}\textsc{TODO}: \color{black}
+  \ifthenelse{\equal{#1}{}}{replace me}{#1}%
+}
+
+% Matrices
+\newcommand{\twoxtwo}[4]{
+  \begin{bmatrix}
+    #1 & #2 \\
+    #3 & #4
+  \end{bmatrix}
+}
+
+\newcommand{\threexthree}[9]{
+  \begin{bmatrix}
+    #1 & #2 & #3 \\
+    #4 & #5 & #6 \\
+    #7 & #8 & #9
+  \end{bmatrix}
+}
+
+\newcommand{\twovec}[2]{
+  \begin{bmatrix}
+   #1 \\
+   #2
+  \end{bmatrix}
+}
+
+\newcommand{\threevec}[3]{
+  \begin{bmatrix}
+    #1 \\
+    #2 \\
+    #3
+  \end{bmatrix}
+}
+
+\newcommand{\fourvec}[4]{
+  \begin{bmatrix}
+    #1 \\
+    #2 \\
+    #3 \\
+    #4
+  \end{bmatrix}
+}
+
+\newcommand{\twovecT}[2]{
+  \begin{bmatrix}
+    #1 & #2
+  \end{bmatrix}
+}
+
+\newcommand{\threevecT}[3]{
+  \begin{bmatrix}
+    #1 & #2 & #3
+  \end{bmatrix}
+}
+
+\newcommand{\fourvecT}[4]{
+  \begin{bmatrix}
+    #1 & #2 & #3 & #4
+  \end{bmatrix}
+}
+
+% Quick Remove from Math Mode
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+\newcommand{\pts}{\operatorname{pts}}
+\newcommand{\adj}{\operatorname{adj}}
+\newcommand{\tr}{\operatorname{tr}}
+
+% Containers
+\newcommand{\abracket}[1]{\left< #1 \right>}
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\bracket}[1]{\left[ #1 \right]}
+\newcommand{\bra}[1]{\left< #1 \right|}
+\newcommand{\dbracket}[1]{\llbracket #1 \rrbracket}
+\newcommand{\inprod}[2]{\left<\left. #1\ \right| #2 \right>}
+\newcommand{\ket}[1]{\left| #1 \right>}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
+\newcommand{\paren}[1]{\left( #1 \right)}
+\renewcommand{\brace}[1]{\left\{ #1 \right\}}
+
+% Extra Commands
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+\newcommand{\deriv}[2]{\frac{d #1}{d #2}}
+\newcommand{\pderiv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+\newcommand*\dif{\mathop{}\!\mathrm{d}}
+\newcommand{\txt}[1]{\text{#1}}
+\newcommand{\seq}[1]{#1_1, #1_2, \ldots, #1_n}
+\newcommand{\eval}[3]{\left. #1 \right|_{#2}^{#3}}
+\newcommand{\code}{\texttt}
+\renewcommand{\bf}[1]{\mathbf{#1}}
+\renewcommand{\E}[2]{#1 \times 10^{#2}}
+\def\dbar{{\mathchar'26\mkern-12mu d}}
+\newcommand{\StatexIndent}[1][3]{%
+  \setlength\@tempdima{\algorithmicindent}%
+  \Statex\hskip\dimexpr#1\@tempdima\relax
+}
+
+% Quick Special Characters
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\bigO}{\mathcal{O}}
+\renewcommand{\P}{\mathcal{P}}
+
+% Algorithmic parallel block
+% declaration of the new block
+\algblock{ParFor}{EndParFor}
+% customising the new block
+\algnewcommand\algorithmicparfor{\textbf{parallel for}}
+\algnewcommand\algorithmicpardo{\textbf{do}}
+\algnewcommand\algorithmicendparfor{\textbf{end\ parallel\ for}}
+\algrenewtext{ParFor}[1]{\algorithmicparfor\ #1\ \algorithmicpardo}
+\algrenewtext{EndParFor}{\algorithmicendparfor}
+% mute last statement
+\algtext*{EndParFor}
