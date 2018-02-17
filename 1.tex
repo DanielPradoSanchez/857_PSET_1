@@ -19,15 +19,15 @@
 
     \solution \\
 
-    \part[Objective]
+    \section{Objective}
 
     The following outlines a software-implemented security policy that may be implemented by camera manufacturers in order to add encryption to handheld digital cameras. The policy will detail principal roles of camera users and the privileges each principal may have. It will also give an overview of the technical implementation of such an encryption scheme.
 
-    \part[User Roles]
+    \section{User Roles}
 
     A camera may have multiple \textsc{Authorized User}s that know the alphanumeric password to access the data on the camera. \textsc{Unauthorized User}s should have no access to photos, settings, or any other data on the camera and do not know the password. \\
 
-    \textbf{Authorized User} Any user may opt to set a password on the camera, leading to a distinction between authorized users and unauthorized users. Upon purchasing a camera, we recommend that new users set a password. If no password is set, anyone with physical access to the camera will have the privileges of an authorized user. \\
+    \subsection{Authorized User} Any user may opt to set a password on the camera, leading to a distinction between authorized users and unauthorized users. Upon purchasing a camera, we recommend that new users set a password. If no password is set, anyone with physical access to the camera will have the privileges of an authorized user. \\
 
     Authorized users have the ability to:
     \begin{itemize}
@@ -39,9 +39,9 @@
         \item All other camera functions
     \end{itemize}
 
-    \textbf{Unauthorized User} If a password is set, a user who doesn't know the password is considered unauthorized and has almost no privileges on the camera. The camera will immediately ask the user for the password upon powering on. The only privilege unauthorized users have is the ability to take photos as they are encrypted with the public key.
+    \subsection{Unauthorized User} If a password is set, a user who doesn't know the password is considered unauthorized and has almost no privileges on the camera. The camera will immediately ask the user for the password upon powering on. The only privilege unauthorized users have is the ability to take photos as they are encrypted with the public key.
 
-    \part[Technical Implementation]
+    \section{Technical Implementation}
 
     If no password is set, decrypted images will be stored on the camera's SD card. \\
 
@@ -55,7 +55,7 @@
 
     If the user would like to decrypt photos on their SD card for exporting, they will be asked to enter their password which will be used to decrypt all photos on the SD card, effectively removing the password.
 
-    \part[Security Analysis]
+    \section{Security Analysis}
 
     The above security policy ensures confidentiality: a user without the password cannot access the photos on the camera or change any camera settings. \\
 
