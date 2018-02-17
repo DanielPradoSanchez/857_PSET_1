@@ -25,7 +25,28 @@
     \part C
       \todo \\
 
-    \part D
-      \todo
+    \part DThe messages are
+
+    \begin{verbatim}
+        Cryptography is the study of "mathematical" systems
+         involving two kinds of security problems: privacy
+        and authentication. A privacy system prevents the e
+        xtraction information by unauthorized parties from
+        messages transmitted over a public channel, thus as
+        suring the sender of a message that it is being rea
+        d only by the intended recipient. An authentication
+         system prevents the unauthorized injection of mess
+        ages into a public channel, assuring the receiver o
+        f a message of the legitimacy of its sender.
+    \end{verbatim}
+    and the pad is 
+    \begin{verbatim}
+        9e c6 d4 29 00 62 ab 51 7a 72 e5 c1 d4 10 cd d6 17
+        54 e4 20 84 50 e4 f9 00 13 fd a6 9f ef 19 d4 60 2a
+        42 07 cd d5 a1 01 6d 07 01 32 61 3c 65 9a 8f 5d 33
+    \end{verbatim}
+
+    Since we were given ten ciphertexts and know that each character is a readable hex character, we have a bounded number of possible bytes to which each ciphertext byte can decode. So, for each of the 51 bytes, we can iterate through the 256 possible pad bytes and see which byte, when used to decrypt the ciphertext byte, yields readable characters for all ten ciphertexts. The code for this can be found at \url{https://github.com/DanielPradoSanchez/857_PSET_1/blob/master/2d.py}.
+
   \end{homeworkProblem}
 \end{document}
