@@ -46,8 +46,9 @@
 
         If a password is set, public key cryptopgraphy will be used to keep images secure. The public key \textsc{Pk} will be stored on the SD card and used to encrypt new photos when they are written to disk. The secret key \textsc{Sk} will be used to decrypt photos on the disk. But, we won't store the secret key on the SD card; given the secret key, hash function $H$, and password $p$, we compute the hidden key \textsc{Hk}:
         \begin{align*}
-            \textsc{Hk} = \textsc{Sk} \cdot H(p)
+          \textsc{Hk} = \textsc{Sk} \cdot H(p)
         \end{align*}
+
         In this way, an unauthorized user who does not know the password has no way of obtaining the secret key from the hidden key. However, given the password, we can compute the secret key simply by dividing \textsc{Hk} by $H(p)$. \\
 
         Upon powering up the device, the user will prompted for their password, which will be used to derive the secret key from the hidden key. Password correctness can be checked by seeing if the secret key derived from the hidden key matches the private key. If the secret key matches, it will be stored in voltaile memory on the camera to be used to decrypt images to be viewed on the camera. \\
