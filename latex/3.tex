@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage{homework}
+
+% Title Parameters
+\newcommand{\hmwkTitle}{Pset \#1-3}
+\newcommand{\hmwkCompletionDate}{\today}
+\newcommand{\hmwkClass}{\hspace{6cm} 6.857}
+\newcommand{\hmwkClassTime}{Spring 2018}
+\newcommand{\hmwkClassRecitation}{}
+\newcommand{\hmwkAuthorName}{Austin Garrett, Daniel Prado Sanchez, Elliott Forde}
+\newcommand{\hmwkCollaborators}{}
+
+\begin{document}
+
+  \initProblemCounter{3}
+
+  \begin{homeworkProblem}[3]
+    Spectre \\
+
+    \solution \\
+
+    \part
+      Timing attacks work by exploiting the variable speed at which operations occur. Cache timing attacks (what Meltdown exploits) apply this to the cache. This can be exploited by running 2 steps:
+      \begin{enumerate}
+        \item Clearing CPU cache
+        \item Attempt to read desired memory address
+      \end{enumerate}
+    
+      This will result in an exception as the attacker won't have access to the desired memory address. However, as the regular program runs, it will read memory addresses which will then be placed in the cache. The attacker can then see which memory addresses have been read into the cache as the exception will be raised faster. This can be used by the attacker to determine where sensitive data may live. \\
+
+    \part
+      Spectre takes advantage of speculative execution to cause the CPU to execute branches with code that should/may not have executed if the branch condition was evaluated fully before execution. Spectre takes advantage of this to then leak memory or register contents. An example of this is shown here (taken from the Spectre paper):
+      \begin{lstlisting}
+if (x < array1_size):
+    y = array2[array1[x] * 256];
+      \end{lstlisting}
+    
+    This can be exploited as the CPU can speculatively execute this branch even though x may be larger than then size of array1. Spectre can then use by indexing past the end of array1 and then leaking the information. \\
+
+    \part
+      Disable indirect branch prediction in all processors.
+      \begin{enumerate}
+        \item Would protect against Spectre
+        \item Pros: fully protects against Spectre, not difficult for customers
+        \item Cons: huge performance hit to AWS, no option to opt out
+        \item Don't recommend
+      \end{enumerate}
+      
+      Give individual processes the ability to disable indirect branch prediction when they are running.
+      \begin{enumerate}
+        \item This would protect against Spectre if used correctly. This would be alright if the processes dealing with code that could access addresses had indirect branch prediction disabled. 
+        \item Pros: Fine grain, safe is used well, performance friendly if used well
+        \item Cons: difficult for customers, can be used poorly both for security and performance
+        \item Recommend
+      \end{enumerate}
+      
+      Given individual customers a choice of whether to disable indirect branch prediction for their virtual machines.     
+      \begin{enumerate}
+        \item  This would protect against Spectre if a user opted in. I would recommend this approach as well as it gives the customers the option to be safe. 
+        \item Pros: Not much work on customer (more likely to be adopted if it's easier)
+        \item Cons: Not every user is safe, customers who do opt in may take a large performance hit
+        \item Recommend
+      \end{enumerate}
+      
+      Do nothing.
+      \begin{enumerate}
+        \item Does not mitigate Spectre in any new way
+        \item Pros: easy
+        \item Cons: does not mitigate anything, customers may switch to different platform that does protect them, ignoring the problem
+        \item Don't recommend
+      \end{enumerate}
+  \end{homeworkProblem}
+\end{document}
