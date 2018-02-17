@@ -48,10 +48,14 @@ for char_index in range(len(cts[0])):
         if valid_pad:  # ok since there's only one valid pad for each character
             pad_array.append(pad)
 
-msg = []
+print("MESSAGES:")
 for ciphertext in cts:
-    msg += [
+    msg = [
         chr(decrypt(ciphertext[i], ciphertext[i-1], pad_array[i]))
         for i in range(1, len(cts[0]))
     ]
-print "".join(msg)
+    print("".join(msg))
+
+pad_chars = [hex(char)[2:] for char in pad_array[1:]]
+print ("\nPAD:")
+print(" ".join(pad_chars))
