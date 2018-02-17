@@ -16,16 +16,31 @@
 
     \solution \\
 
-    \part A
-      \todo \\
+    \part
+      If we assume they have the same encrypting pad, then the first ciphertext is $c_1 = m_1 \oplus p$, and the second is $c_2 = m_1 \oplus p$. From this, we can do $c_1 \oplus c_2 = (m_1 \oplus p) \oplus (m_2 \oplus p) = m_1 \oplus m_2$. Since we know that each message is a 12-character English word, we can iterate through all such words for $m_1$, and see if $m_1 \oplus (m_1 \oplus m_2) = m_2$ is a valid English word. We can similarly do this for $m_2$. Using this method we determined the first message is ``intelligence'' and the second is ``cryptography''. The pad used to encrypt them is
+      \begin{center}
+        \code{cf cb 19 91 e0 cc 95 e1 b3 71 4c 8c}
+      \end{center}
 
-    \part B
-      \todo \\
+    \part
+      Starting with the scheme and noticing the invertibility of the $\oplus$ operation, we have
+      \begin{align*}
+        c_i &= g(m_i \oplus c_{i-1}) \oplus p_i \\
+        c_i \oplus p_i &= g(m_i \oplus c_{i-1}) \\
+        g^{-1}(c_i \oplus p_i) &= m_i \oplus c_{i-1} \\
+        g^{-1}(c_i \oplus p_i) \oplus c_{i-1} &= m_i
+      \end{align*}
 
-    \part C
-      \todo \\
+      Because $g$ is both public and one-to-one, we know $g^{-1}$. We are given $c_i$, $c_{i-1}$, and $p_i$, thus we can derive $m_i$. \\
 
-    \part D
+    \part
+      Let the message $b$th message be $M^b = (m^b_1, m^b_2, \ldots, m^b_n)$, a sequence of bytes. We want to show $\P(b | C) = 1/2$. From lecture, using Bayes' Law we determined showing $\P(C | b) = \P(C) = 1/2^n$ is sufficient to show security. We proceed with a proof of induction on $c_i$. \\
+      
+      For the base case, we want to show that $\P(c_1 | b) = \P(c_1) = 1/2$. Following from the fact that $g$ is a one-to-one mapping, we have $\P(c_1 = g(m^b_1) \oplus p_1 | b) = \P(c_1 = g(m^b_1) \oplus p_1 | g(m^b_1)) = 1/2$. Next we have $\P(c_1) = \P(c_1 | b = 0)\P(b = 0) + \P(c_1 | b = 1)\P(b = 1) = (1/2)(1/2) + (1/2)(1/2)$. \\
+      
+      For the inductive case, we want to show $\P(c_i | b) = \P(c_i) = 1/2$. Following from the fact that $g$ is a one-to-one mapping, we have $\P(c_1 = g(m^b_i \oplus c_{i-1}) \oplus p_i | b) = \P(c_1 = g(m^b_i \oplus c_{i-1}) | g(m^b_i \oplus c_{i-1})) = 1/2$. Next we have $\P(c_i) = \P(c_i | b = 0)\P(b = 0) + \P(c_i | b = 1)\P(b = 1) = (1/2)(1/2) + (1/2)(1/2)$. This proves that we gain no information about the message from the ciphertext. \\
+
+    \part
       \todo
   \end{homeworkProblem}
 \end{document}
