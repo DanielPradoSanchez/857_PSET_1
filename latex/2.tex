@@ -20,7 +20,7 @@
     \solution \\
 
     \part
-      If we assume they have the same encrypting pad, then the first ciphertext is $c_1 = m_1 \oplus p$, and the second is $c_2 = m_1 \oplus p$. From this, we can do $c_1 \oplus c_2 = (m_1 \oplus p) \oplus (m_2 \oplus p) = m_1 \oplus m_2$. Since we know that each message is a 12-character English word, we can iterate through all such words for $m_1$, and see if $m_1 \oplus (m_1 \oplus m_2) = m_2$ is a valid English word. We can similarly do this for $m_2$. Using this method we determined the first message is ``intelligence'' and the second is ``cryptography''. \\
+      If we assume they have the same encrypting pad, then the first ciphertext is $c_1 = m_1 \oplus p$, and the second is $c_2 = m_1 \oplus p$. From this, we can do $c_1 \oplus c_2 = (m_1 \oplus p) \oplus (m_2 \oplus p) = m_1 \oplus m_2$. Since we know that each message is a 12-character English word, we can iterate through all such words for $m_1$, and see if $m_1 \oplus (m_1 \oplus m_2) = m_2$ is a valid English word. We can similarly do this for $m_2$. Using this method we determined the messages are ``intelligence'' and ``cryptography''. \\
 
     \part
       Starting with the scheme and noticing the invertibility of the $\oplus$ operation, we have
