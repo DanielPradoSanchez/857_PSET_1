@@ -10,13 +10,13 @@ g_inverse = {}
 
 i = 0
 for line in open("./gbox.txt", "r"):
-	byte_array = line.split()
-	for byte in byte_array:
-		int_byte = int(byte, 16)
+    byte_array = line.split()
+    for byte in byte_array:
+        int_byte = int(byte, 16)
 		
-		g[i] = int_byte
-		g_inverse[int_byte] = i
-		i += 1
+        g[i] = int_byte
+        g_inverse[int_byte] = i
+        i += 1
 
 cts = [
     [0] + [
@@ -33,7 +33,7 @@ possible_bytes = set([int(hex(ord(char)), 16) for char in string.printable])
 def decrypt(ct, ct_prev, pad):
     return g_inverse[ct ^ pad] ^ ct_prev
 
-pad_array = [0]
+pad_array = [] 
 
 for char_index in range(len(cts[0])):
     # for each character, check which byte pads give us a valid character
@@ -51,11 +51,11 @@ for char_index in range(len(cts[0])):
 print("MESSAGES:")
 for ciphertext in cts:
     msg = [
-        chr(decrypt(ciphertext[i], ciphertext[i-1], pad_array[i]))
+        chr(decrypt(ciphertext[i], ciphertext[i-1], pad_array[i-1]))
         for i in range(1, len(cts[0]))
     ]
     print("".join(msg))
 
-pad_chars = [hex(char)[2:] for char in pad_array[1:]]
+pad_chars = [hex(char)[2:] for char in pad_array]
 print ("\nPAD:")
 print(" ".join(pad_chars))
